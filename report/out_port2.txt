@@ -1,0 +1,65 @@
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_TimeLimit                               3600
+CPXPARAM_MIP_Tolerances_MIPGap                   9.9999999999999995e-07
+Found incumbent of value 0.008762 after 0.00 sec. (0.07 ticks)
+Tried aggregator 1 time.
+MIQP Presolve modified 85 coefficients.
+Reduced MIQP has 88 rows, 170 columns, and 424 nonzeros.
+Reduced MIQP has 85 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Reduced MIQP objective Q matrix has 7225 nonzeros.
+Presolve time = 0.00 sec. (0.95 ticks)
+Probing time = 0.00 sec. (0.02 ticks)
+Tried aggregator 1 time.
+Reduced MIQP has 88 rows, 170 columns, and 424 nonzeros.
+Reduced MIQP has 85 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Reduced MIQP objective Q matrix has 7225 nonzeros.
+Presolve time = 0.00 sec. (0.83 ticks)
+Classifier predicts products in MIQP should be linearized.
+Probing time = 0.00 sec. (0.02 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (5.61 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            0.0088       -0.0199           326.96%
+      0     0        0.0005    25        0.0088        0.0005       14   93.75%
+*     0+    0                            0.0018        0.0005            69.57%
+      0     0        0.0005    25        0.0018       Cuts: 2       16   69.57%
+*     0+    0                            0.0006        0.0005             2.95%
+*     0+    0                            0.0006        0.0005             1.83%
+      0     0  -1.00000e+75     0        0.0006        0.0005       16    1.83%
+      0     2        0.0005    25        0.0006        0.0005       16    1.83%
+Elapsed time = 0.08 sec. (45.05 ticks, tree = 0.02 MB, solutions = 4)
+*   112+   14                            0.0006        0.0005             1.17%
+
+Cover cuts applied:  1
+Mixed integer rounding cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.08 sec. (44.24 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.03 sec. (30.14 ticks)
+  Sync time (average)   =    0.02 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.10 sec. (74.39 ticks)
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_TimeLimit                               3600
+CPXPARAM_MIP_Tolerances_MIPGap                   9.9999999999999995e-07
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.02 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.02 ticks)
+85
+3655
+0.0018
+15.0
+status = OPTIMAL

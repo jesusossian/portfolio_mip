@@ -15,7 +15,7 @@ struct InstanceData
 end
 
 # define instance name
-instance="port1.txt"
+instance="port6.txt"
 path="../instances/$(instance)"
 
 #define results file name
@@ -33,8 +33,9 @@ function read_data(path)
   N = parse(Int,tokens[aux])
   println(N)
 
-  aux += 1
-  M = parse(Int,tokens[aux])
+  #aux += 1
+  #M = parse(Int,tokens[aux])
+  M = Int((N*(N-1)/2 + N))
   println(M)
 
   # rho = 0.0018
@@ -104,12 +105,12 @@ function main(inst::InstanceData)
 
   model = Model(CPLEX.Optimizer)
   
-  model = Model(CPLEX.Optimizer)
   set_optimizer_attribute(model,"CPX_PARAM_TILIM",maxtime) # time limit
   set_optimizer_attribute(model,"CPX_PARAM_EPGAP",tolgap) # relative MIP optimality gap
   #set_optimizer_attribute(model,"CPX_PARAM_LPMETHOD ",0) # method used in root node
   #set_optimizer_attribute(model,"CPX_PARAM_NODELIM",maxnodes) # MIP node limit
-  #set_optimizer_attribute(model,"CPX_PARAM_THREADS",1) # number of threads    
+  #set_optimizer_attribute(model,"CPX_PARAM_THREADS",1) # number of threads 
+  set_optimizer_attribute(model, "CPXPARAM_OptimalityTarget", 3)   
 
   N = inst.N
     
@@ -154,7 +155,7 @@ function main(inst::InstanceData)
   time = solve_time(model)
 
   ### print results ###
-  open("../results/result_$(instance).txt","a") do f
+  open("../results/result_$(instance)","a") do f
     if method == "mip"
       write(f,"$(instance);$(N);$(method);$(bestbound);$(bestsol);$(gap);$(time);$(numnodes);$(opt)\n")
     else

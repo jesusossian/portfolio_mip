@@ -1,0 +1,64 @@
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_TimeLimit                               3600
+CPXPARAM_MIP_Tolerances_MIPGap                   9.9999999999999995e-07
+Found incumbent of value 0.005792 after 0.00 sec. (0.09 ticks)
+Tried aggregator 1 time.
+MIQP Presolve modified 98 coefficients.
+Reduced MIQP has 101 rows, 196 columns, and 489 nonzeros.
+Reduced MIQP has 98 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Reduced MIQP objective Q matrix has 9604 nonzeros.
+Presolve time = 0.00 sec. (1.22 ticks)
+Probing time = 0.00 sec. (0.03 ticks)
+Tried aggregator 1 time.
+Reduced MIQP has 101 rows, 196 columns, and 489 nonzeros.
+Reduced MIQP has 98 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Reduced MIQP objective Q matrix has 9604 nonzeros.
+Presolve time = 0.00 sec. (1.08 ticks)
+Classifier predicts products in MIQP should be linearized.
+Probing time = 0.00 sec. (0.03 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.85 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            0.0058       -0.0664              --- 
+      0     0        0.0005    38        0.0058        0.0005       14   91.61%
+*     0+    0                            0.0018        0.0005            72.38%
+      0     0        0.0005    38        0.0018       Cuts: 2       16   72.38%
+*     0+    0                            0.0005        0.0005             2.23%
+      0     2        0.0005    38        0.0005        0.0005       16    2.23%
+Elapsed time = 0.07 sec. (65.06 ticks, tree = 0.02 MB, solutions = 3)
+*   473   173      integral     0        0.0005        0.0005     1432    1.86%
+
+Cover cuts applied:  1
+Implied bound cuts applied:  4
+Mixed integer rounding cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.07 sec. (63.96 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.25 sec. (226.78 ticks)
+  Sync time (average)   =    0.06 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.32 sec. (290.73 ticks)
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_TimeLimit                               3600
+CPXPARAM_MIP_Tolerances_MIPGap                   9.9999999999999995e-07
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.03 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.03 ticks)
+98
+4851
+0.0018
+15.0
+status = OPTIMAL
