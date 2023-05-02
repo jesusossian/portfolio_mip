@@ -1,6 +1,8 @@
 # code for read intances .txt
 
-using JuMP, CPLEX
+using JuMP 
+using CPLEX
+using Gurobi
 
 struct InstanceData
   N::Int
@@ -16,7 +18,7 @@ end
 
 # define instance name
 instance="port6.txt"
-path="../instances/$(instance)"
+path="instances/$(instance)"
 
 #define results file name
 #solution="solutions.txt"
@@ -100,18 +102,30 @@ end
 
 # function to model the problem 
 function main(inst::InstanceData)
-  maxtime = 3600
+
+  maxtime = 43200
   tolgap = 0.000001
+  solver = "gurobi"
 
-  model = Model(CPLEX.Optimizer)
+  if solver == "gurobi"
+    model = Model(Gurobi.Optimizer)
+    set_optimizer_attribute(model,"NonConvex",2)
+    set_optimizer_attribute(model,"TimeLimit",maxtime) # Time limit
+    set_optimizer_attribute(model,"MIPGap",tolgap) # Relative MIP optimality gap
+    set_optimizer_attribute(model,"Threads",1) # Controls the number of threads.
+  elseif solver == "cplex"
+    model = Model(Cplex.Optimizer)
+    set_optimizer_attribute(model,"CPX_PARAM_TILIM",maxtime) # time limit
+    set_optimizer_attribute(model,"CPX_PARAM_EPGAP",tolgap) # relative MIP optimality gap
+    #set_optimizer_attribute(model,"CPX_PARAM_LPMETHOD ",0) # method used in root node
+    #set_optimizer_attribute(model,"CPX_PARAM_NODELIM",maxnodes) # MIP node limit
+    #set_optimizer_attribute(model,"CPX_PARAM_THREADS",1) # number of threads 
+    set_optimizer_attribute(model,"CPXPARAM_OptimalityTarget",3)
+  else
+    println("No solver selected")
+    return 0
+  end
   
-  set_optimizer_attribute(model,"CPX_PARAM_TILIM",maxtime) # time limit
-  set_optimizer_attribute(model,"CPX_PARAM_EPGAP",tolgap) # relative MIP optimality gap
-  #set_optimizer_attribute(model,"CPX_PARAM_LPMETHOD ",0) # method used in root node
-  #set_optimizer_attribute(model,"CPX_PARAM_NODELIM",maxnodes) # MIP node limit
-  #set_optimizer_attribute(model,"CPX_PARAM_THREADS",1) # number of threads 
-  set_optimizer_attribute(model, "CPXPARAM_OptimalityTarget", 3)   
-
   N = inst.N
     
   @variable(model, y[i=1:N], Bin)
@@ -155,11 +169,11 @@ function main(inst::InstanceData)
   time = solve_time(model)
 
   ### print results ###
-  open("../results/result_$(instance)","a") do f
+  open("results/result_$(instance)","a") do f
     if method == "mip"
-      write(f,"$(instance);$(N);$(method);$(bestbound);$(bestsol);$(gap);$(time);$(numnodes);$(opt)\n")
+      write(f,"$(instance);$(N);$(method);$(solver);$(bestbound);$(bestsol);$(gap);$(time);$(numnodes);$(opt)\n")
     else
-      write(f,"$(instance);$(N);$(form);$(method);$(bestsol);$(time)\n")
+      write(f,"$(instance);$(N);$(form);$(method);$(solver):$(bestsol);$(time)\n")
     end
   end
 
